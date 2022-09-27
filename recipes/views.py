@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 from .models import Recipe
 from .forms import CommentForm
 
@@ -86,3 +87,9 @@ class AddRecipe(generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class Profile(generic.ListView):
+    model = Recipe
+    template_name = 'profile.html'
+    paginate_by = 6

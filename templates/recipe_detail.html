@@ -18,7 +18,7 @@
                 <!-- Preview image figure-->
                 {% if "placeholder" in recipe.image.url %}
                 <figure class="mb-4"><img class="img-fluid rounded"
-                        src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                        src="https://res.cloudinary.com/dqtpa3fvo/image/upload/v1663454046/cld-sample-4.jpg" alt="..." /></figure>
                 {% else %}
                 <figure class="mb-4"></figure><img class="img-fluid rounded" src=" {{ recipe.image.url }}"></figure>
                 {% endif %}
@@ -39,12 +39,7 @@
             </article>
         </div>
     </div>
-    {% if recipe.author == user %}
-    <div>
-      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="">Update</a>
-      <a class="btn btn-danger btn-sm mt-1 mb-1" href="">Delete</a>
-    </div>
-  {% endif %}
+
 
     <div class="row">
 
