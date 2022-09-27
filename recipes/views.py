@@ -75,3 +75,14 @@ class RecipeLike(View):
             recipe.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
+
+
+class AddRecipe(generic.CreateView):
+    model = Recipe
+    template_name = 'add_recipe.html'
+    fields = ['title', 'slug', 'image', 'intro', 'ingredients', 'content']
+    
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

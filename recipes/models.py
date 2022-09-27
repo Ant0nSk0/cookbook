@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.urls import reverse
 
 # Create your models here.
 
@@ -10,7 +11,7 @@ class Recipe(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='recipe_post')
-    image = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField('image', default='placeholder', blank=True)
     intro = models.TextField(blank=True)
     ingredients = models.TextField()
     content = models.TextField()
@@ -28,6 +29,9 @@ class Recipe(models.Model):
 
     def number_of_likes(self):
         return self.likes.count()
+    
+    def get_absolute_url(self):
+        return reverse('recipe_detail', args=[self.slug])
 
 
 class Comment(models.Model):
