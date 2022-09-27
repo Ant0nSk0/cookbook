@@ -5,3 +5,9 @@
 .image-container {
     position: relative;
 }
+
+.btn-like {
+    color: red;
+    border: none;
+    background: transparent;
+}
