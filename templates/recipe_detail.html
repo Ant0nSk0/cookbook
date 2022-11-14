@@ -35,6 +35,7 @@
                     <p>
                         {{ recipe.content | safe }}
                     </p>
+                    <a href="{% url 'edit_recipe' recipe.pk %}"> Edit Recipe </a>
                 </section>
             </article>
         </div>

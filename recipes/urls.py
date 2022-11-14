@@ -7,4 +7,6 @@ urlpatterns = [
     path('like/<slug:slug>', views.RecipeLike.as_view(), name='recipe_like'),
     path('recipes/add', views.AddRecipe.as_view(), name='add_recipe'),
     path('recipes/profile', views.Profile.as_view(), name='profile'),
+    path('recipes/<int:pk>/update/', views.EditRecipe.as_view(), name='edit_recipe'),
+    
 ]

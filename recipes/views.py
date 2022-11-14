@@ -89,6 +89,22 @@ class AddRecipe(generic.CreateView):
         return super().form_valid(form)
 
 
+class EditRecipe(generic.UpdateView):
+    model = Recipe
+    template_name = 'edit_recipe.html'
+    fields = ['title', 'slug', 'image', 'intro', 'ingredients', 'content']
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        recipe = self.get_object()
+        if self.request.user == recipe.author:
+            return True
+        return False
+
+
 class Profile(generic.ListView):
     model = Recipe
     template_name = 'profile.html'
