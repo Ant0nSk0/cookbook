@@ -105,6 +105,18 @@ class EditRecipe(generic.UpdateView):
         return False
 
 
+class DeleteRecipe(generic.DeleteView):
+    model = Recipe
+    template_name = 'recipe_confirm_delete.html'
+    success_url = '/'
+
+    def test_func(self):
+        recipe = self.get_object()
+        if self.request.user == recipe.author:
+            return True
+        return False
+
+
 class Profile(generic.ListView):
     model = Recipe
     template_name = 'profile.html'
